@@ -7,17 +7,23 @@ import com.duan.service.UserService;
 import com.duan.utils.MailsUtils;
 
 public class UserServiceImpl implements UserService {
+	UserDao ud = new UserDaoImpl();
 	@Override
 	public void regist(User user) {
-		// 调用dao完成注册
-		UserDao ud = new UserDaoImpl();
+		// 调用dao完成注册		
 		ud.regist(user);
-		// 发送注册码		
-		if (user.getEmail().contains("@")) {
-			String msg="恭喜您注册成功";
-			MailsUtils.sendMail("18563715635@163.com", "gaoshu12nan", "smtp.163.com",
-					user.getEmail(), "注册验证", "这是一个注册验证");
-		}
+		// 发送注册码
+		String msg = "<a href='http://localhost:8080/Shop/user?method=active&code=" + user.getCode()
+				+ "'>恭喜" + user.getUserName() + "注册成功,点此激活。</a>";
+		MailsUtils.sendMail("18563715635@163.com", "gaoshu12nan", "smtp.163.com", user.getEmail(),
+				"注册验证信息", msg);
+
+	}
+
+	@Override
+	public User active(String code) {
+		User user=ud.active(code);		
+		return user;
 	}
 
 }

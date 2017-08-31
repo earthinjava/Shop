@@ -79,7 +79,13 @@ public class User {
 		this.sex = sex;
 	}
 
-	
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
 
 	public String getCode() {
 		return code;
@@ -87,14 +93,6 @@ public class User {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public Integer getState() {
-		return state;
-	}
-
-	public void setState(Integer state) {
-		this.state = state;
 	}
 		
 }

@@ -35,14 +35,14 @@ public class BaseServlet extends HttpServlet {
 				req.getRequestDispatcher(path).forward(req, resp);
 			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
+				| InvocationTargetException e) {			
 			e.printStackTrace();
 		}
 
 	}
 	//默认的方法
 	public String index(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		response.getWriter().println("方法名错误");
+		response.getWriter().println("method is null");
 		return null;
 	}
 

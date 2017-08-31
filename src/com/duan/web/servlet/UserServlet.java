@@ -54,12 +54,23 @@ public class UserServlet extends BaseServlet {
 		user.setState(Constant.USER_IS_NOT_ACTIVE);
 		//调用service处理数据
 		UserService us=new UserServiceImpl();
-		us.regist(user);
-		
-		
-		
+		us.regist(user);		
 		return "/jsp/msg.jsp";
 	}
-	
+	/*
+	 * 完成用户的激活操作
+	 */	
+	public String active(HttpServletRequest req,HttpServletResponse resp){
+		//获取数据		
+		String code=req.getParameter("code");		
+		//调用service处理数据
+		UserService us=new UserServiceImpl();
+		User u=us.active(code);
+		if(u!=null){
+			return "/jsp/msg.jsp&msg='注册成功'";
+		}else{
+			return null;
+		}		
+	}
 	
 }
