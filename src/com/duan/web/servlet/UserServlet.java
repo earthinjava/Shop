@@ -1,7 +1,9 @@
 package com.duan.web.servlet;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -80,28 +82,40 @@ public class UserServlet extends BaseServlet {
 	}
 
 	//
-	public String login(HttpServletRequest req,HttpServletResponse resp) throws IOException{
-		//获取数据		
-		String username=req.getParameter("username");
-		String password=req.getParameter("password");	
-		//调用service处理数据
-		UserService us=new UserServiceImpl();
-		User u=us.login(username,password);	
-		//若登录正确，存储用户名并回到主页		
-		if(u==null){
+	public String login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// 获取数据
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		// 调用service处理数据
+		UserService us = new UserServiceImpl();
+		User u = us.login(username, password);
+		// 若登录正确，存储用户名并回到主页
+		if (u == null) {
 			req.getSession().setAttribute("msg", "用户名或密码错误");
-			return "/jsp/login.jsp";			
-		//若登录错误返回登录页面	
-		} 
-		if(u.getState()==Constant.USER_IS_NOT_ACTIVE){			
-			req.getSession().setAttribute("msg", "请先验证邮箱再登录");			
-			return "/jsp/login.jsp";	
-		}else {
+			return "/jsp/login.jsp";
+		}
+		// 若登录错误返回登录页面
+		if (u.getState() == Constant.USER_IS_NOT_ACTIVE) {
+			req.getSession().setAttribute("msg", "请先验证邮箱再登录");
+			return "/jsp/login.jsp";
+		} else {
+			/*
+			 * 若勾选了保存用户名，则保存到cookie中,cookie没有修改操作，只需要创建同名的cookie覆盖即可
+			 */
+			if (req.getParameter("savename")!=null) {
+				if (req.getParameter("savename").equals("ok")) {
+					Cookie cookie = new Cookie("savename", URLEncoder.encode(username, "utf-8"));
+					cookie.setMaxAge(604800);
+					cookie.setPath(req.getContextPath() + "/");
+					resp.addCookie(cookie);
+				}
+			}
+
 			req.getSession().setAttribute("username", username);
 			resp.sendRedirect(req.getContextPath());
 			return null;
 		}
-		
+
 	}
 
 	//
