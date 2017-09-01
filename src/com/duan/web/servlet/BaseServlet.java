@@ -20,17 +20,17 @@ public class BaseServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			//»ñÈ¡·½·¨Ãû³ÆÄØ¸ö
+			//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½
 			String mName = req.getParameter("method");
-			//ÅÐ¶Ï·½·¨ÊÇ·ñÎª¿Õ£¬ÈôÎª¿ÕÉè¶¨ÎªÄ¬ÈÏ·½·¨
+			//ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½è¶¨ÎªÄ¬ï¿½Ï·ï¿½ï¿½ï¿½
 			if(mName==null||mName.trim().length()==0){
 				mName="index";
 			}			
-			//»ñµÃ·½·¨
+			//ï¿½ï¿½Ã·ï¿½ï¿½ï¿½
 			Method m = this.getClass().getMethod(mName, HttpServletRequest.class, HttpServletResponse.class);
-			//Ö´ÐÐ·½·¨
-			String path=(String) m.invoke(this, req, resp);
-			//ÅÐ¶ÏÂ·¾¶Ö´ÐÐÌø×ª
+			//Ö´ï¿½Ð·ï¿½ï¿½ï¿½
+			String path=(String) m.invoke(this, req, resp);			
+			//ï¿½Ð¶ï¿½Â·ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½×ª
 			if(path!=null&&path.trim().length()!=0){
 				req.getRequestDispatcher(path).forward(req, resp);
 			}
@@ -40,7 +40,7 @@ public class BaseServlet extends HttpServlet {
 		}
 
 	}
-	//Ä¬ÈÏµÄ·½·¨
+	//Ä¬ï¿½ÏµÄ·ï¿½ï¿½ï¿½
 	public String index(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.getWriter().println("method is null");
 		return null;

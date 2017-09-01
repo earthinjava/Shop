@@ -7,7 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+		if (session.getAttribute("username") == null) {
+	%>
 	<a href="<%=request.getContextPath()%>/user?method=loginUI">登录</a>
 	<a href="<%=request.getContextPath()%>/user?method=registerUI">注册</a>
+	<%
+		} else if (session.getAttribute("username") != null) {
+	%>
+	<a href="<%=request.getContextPath()%>/user?method=showuser"><%=session.getAttribute("username") %>，您好</a>
+	<a href="<%=request.getContextPath()%>/user?method=logout">退出</a>
+	<%
+		}
+	%>
 </body>
 </html>

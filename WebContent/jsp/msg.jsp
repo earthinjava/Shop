@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-恭喜您注册成功，请去邮箱验证信息！
+<%=request.getParameter("msg") %>
 </body>
 </html>
