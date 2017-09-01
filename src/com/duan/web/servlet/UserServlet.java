@@ -10,29 +10,29 @@ import com.duan.service.impl.UserServiceImpl;
 import com.duan.utils.UUIDutils;
 
 public class UserServlet extends BaseServlet {
-	//ÓÃ»§µÇÂ¼
-	//ÓÃ»§×¢²á
-	//ÓÃ»§¼¤»î
-	//ÓÃ»§ÍË³ö
+	//ç”¨æˆ·ç™»å½•
+	//ç”¨æˆ·æ³¨å†Œ
+	//ç”¨æˆ·æ¿€æ´»
+	//ç”¨æˆ·é€€å‡º
 	private static final long serialVersionUID = 1L;
 	/*
-	 * Ìø×ªµ½×¢²áÒ³Ãæ
+	 * è·³è½¬åˆ°æ³¨å†Œé¡µé¢
 	 */
 	public String registerUI(HttpServletRequest req,HttpServletResponse resp){
 		return "/jsp/register.jsp";
 	}
 	/*
-	 * Ìø×ªµ½µÇÂ¼Ò³Ãæ
+	 * è·³è½¬åˆ°ç™»å½•é¡µé¢
 	 */
 	public String loginUI(HttpServletRequest req,HttpServletResponse resp){
 		return "/jsp/login.jsp";
 	}
 	
 	/*
-	 * Íê³ÉÓÃ»§µÄ×¢²á²Ù×÷
+	 * å®Œæˆç”¨æˆ·çš„æ³¨å†Œæ“ä½œ
 	 */	
 	public String regist(HttpServletRequest req,HttpServletResponse resp){
-		//»ñÈ¡Êı¾İ
+		//è·å–æ•°æ®
 		String userName=req.getParameter("username");
 		String password=req.getParameter("password");
 		String name=req.getParameter("name");
@@ -40,7 +40,7 @@ public class UserServlet extends BaseServlet {
 		String telephone=req.getParameter("telephone");
 		String birthday=req.getParameter("birthday");
 		String sex=req.getParameter("sex");		
-		//·â×°Êı¾İ
+		//å°è£…æ•°æ®
 		User user=new User();
 		user.setBirthday(birthday);		
 		user.setUserName(userName);
@@ -52,22 +52,22 @@ public class UserServlet extends BaseServlet {
 		user.setUid(UUIDutils.getID());
 		user.setCode(UUIDutils.getID());
 		user.setState(Constant.USER_IS_NOT_ACTIVE);
-		//µ÷ÓÃservice´¦ÀíÊı¾İ
+		//è°ƒç”¨serviceå¤„ç†æ•°æ®
 		UserService us=new UserServiceImpl();
 		us.regist(user);		
 		return "/jsp/msg.jsp";
 	}
 	/*
-	 * Íê³ÉÓÃ»§µÄ¼¤»î²Ù×÷
+	 * å®Œæˆç”¨æˆ·çš„æ¿€æ´»
 	 */	
 	public String active(HttpServletRequest req,HttpServletResponse resp){
-		//»ñÈ¡Êı¾İ		
+		//è·å–æ•°æ®		
 		String code=req.getParameter("code");		
-		//µ÷ÓÃservice´¦ÀíÊı¾İ
+		//è°ƒç”¨serviceå¤„ç†æ•°æ®
 		UserService us=new UserServiceImpl();
 		User u=us.active(code);
 		if(u!=null){
-			return "/jsp/msg.jsp&msg='×¢²á³É¹¦'";
+			return "/jsp/msg.jsp&msg='æ³¨å†ŒæˆåŠŸ'";
 		}else{
 			return null;
 		}		
