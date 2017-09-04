@@ -35,4 +35,13 @@
     <servlet-name>userservlet</servlet-name>
       <url-pattern>/user</url-pattern>
   </servlet-mapping>
+  <!-- /user跳转请求servlet -->	 
+   <servlet>
+    <servlet-name>categoryservlet</servlet-name>
+    <servlet-class>com.duan.web.servlet.CategoryServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>categoryservlet</servlet-name>
+      <url-pattern>/category</url-pattern>
+  </servlet-mapping>
 </web-app>

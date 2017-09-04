@@ -102,13 +102,17 @@ public class UserServlet extends BaseServlet {
 			/*
 			 * 若勾选了保存用户名，则保存到cookie中,cookie没有修改操作，只需要创建同名的cookie覆盖即可
 			 */
-			if (req.getParameter("savename")!=null) {
-				if (req.getParameter("savename").equals("ok")) {
-					Cookie cookie = new Cookie("savename", URLEncoder.encode(username, "utf-8"));
-					cookie.setMaxAge(604800);
-					cookie.setPath(req.getContextPath() + "/");
-					resp.addCookie(cookie);
-				}
+
+			if (req.getParameter("savename")!=null&&req.getParameter("savename").equals("ok")) {
+				Cookie cookie = new Cookie("savename", URLEncoder.encode(username, "utf-8"));
+				cookie.setMaxAge(604800);
+				cookie.setPath(req.getContextPath() + "/");
+				resp.addCookie(cookie);
+			} else {
+				Cookie cookie = new Cookie("savename", " ");
+				cookie.setMaxAge(0);
+				cookie.setPath(req.getContextPath() + "/");
+				resp.addCookie(cookie);
 			}
 
 			req.getSession().setAttribute("username", username);

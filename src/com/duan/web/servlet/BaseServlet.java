@@ -22,6 +22,7 @@ public class BaseServlet extends HttpServlet {
 		try {
 			//��ȡ���������ظ�
 			String mName = req.getParameter("method");
+			System.out.println(mName);
 			//�жϷ����Ƿ�Ϊ�գ���Ϊ���趨ΪĬ�Ϸ���
 			if(mName==null||mName.trim().length()==0){
 				mName="index";
