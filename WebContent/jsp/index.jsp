@@ -18,7 +18,7 @@
 		} else if (session.getAttribute("username") != null) {
 	%>
 	<a href="<%=request.getContextPath()%>/user?method=showuser"><%=session.getAttribute("username") %>，您好</a>
-	<a href="<%=request.getContextPath()%>/user?method=logout">退出</a>
+	<a href="<%=request.getContextPath()%>/user?method=logout">exit</a>
 	<%
 		}
 	%>	
