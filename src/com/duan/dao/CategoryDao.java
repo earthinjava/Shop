@@ -7,5 +7,6 @@ import com.duan.domain.Category;
 public interface CategoryDao {
 
 	List<Category> findAll();
+	
 
 }

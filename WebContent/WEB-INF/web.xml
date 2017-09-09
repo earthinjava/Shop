@@ -44,4 +44,22 @@
     <servlet-name>categoryservlet</servlet-name>
       <url-pattern>/category</url-pattern>
   </servlet-mapping>
+   <!-- /index跳转请求到servlet -->	 
+   <servlet>
+    <servlet-name>index</servlet-name>
+    <servlet-class>com.duan.web.servlet.IndexServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+      <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  <!-- /product跳转请求到servlet -->	 
+   <servlet>
+    <servlet-name>product</servlet-name>
+    <servlet-class>com.duan.web.servlet.ProductServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>product</servlet-name>
+      <url-pattern>/product</url-pattern>
+  </servlet-mapping>
 </web-app>

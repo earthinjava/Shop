@@ -17,15 +17,16 @@ public class CategoryServlet extends BaseServlet {
 	public String findAll(HttpServletRequest req, HttpServletResponse resp) {
 		try {
 			// 0.设置响应编码
-			resp.setContentType("text/html;charset=utf-8");
+			resp.setContentType("text/html;charset=utf-8");			
 			// 1.获取数据
 			CategoryService cs = new CategoryServiceImpl();
 			String values = cs.findAll();			
 			// 2.将数据写回到head.jsp
+			
 			resp.getWriter().println(values);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}	
 }

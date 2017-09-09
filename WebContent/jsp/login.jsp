@@ -35,7 +35,7 @@
 			}
 		%>
 		<input type="submit" value="登录" /> <input type="checkbox"
-			name="savename" value="ok" />记住用户名</br> <a
+			name="savename" value="ok" checked="checked"/>记住用户名</br> <a
 			href="<%=request.getContextPath()%>/user?method=registerUI">注册</a>
 	</form>
 </body>

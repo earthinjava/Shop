@@ -109,7 +109,7 @@ public class UserServlet extends BaseServlet {
 				cookie.setPath(req.getContextPath() + "/");
 				resp.addCookie(cookie);
 			} else {
-				Cookie cookie = new Cookie("savename", " ");
+				Cookie cookie = new Cookie("savename", "");
 				cookie.setMaxAge(0);
 				cookie.setPath(req.getContextPath() + "/");
 				resp.addCookie(cookie);
@@ -126,7 +126,13 @@ public class UserServlet extends BaseServlet {
 	public String logout(HttpServletRequest req, HttpServletResponse resp) {
 		// 清空session
 		req.getSession().invalidate();
-		return "/jsp/index.jsp";
+		try {
+			resp.sendRedirect("/Shop");
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		return null;
 
 	}
 }

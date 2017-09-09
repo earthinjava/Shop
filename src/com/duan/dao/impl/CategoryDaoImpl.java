@@ -45,6 +45,38 @@ public class CategoryDaoImpl implements CategoryDao {
 		return null;
 	}
 
+	public Category getCategory(String cid) {
+		Connection conn = null;
+		String sql = "select * from category where cid=" + cid;
+		Statement sttm = null;
+		try {
+			conn = JDBCUtil.getMySQLConn();
+			sttm = conn.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			List<Category> categorys = creatCategoryList(rs);
+			return categorys.get(0);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (sttm != null) {
+				try {
+					sttm.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
 	private List<Category> creatCategoryList(ResultSet rs) {
 		List<Category> categories = new ArrayList<Category>();
 		try {
@@ -56,15 +88,12 @@ public class CategoryDaoImpl implements CategoryDao {
 				category.setCname(cname);
 				categories.add(category);
 			}
-			if (categories.size() != 0) {
-				return categories;
-			}
-			return null;
+			return categories;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 
+	
 }
