@@ -221,4 +221,68 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
+	public User getUserByUserName(String userName) {
+
+		Connection connection = JDBCUtil.getMySQLConn();
+		String sql = "select * from user where username='" + userName + "'";
+		Statement sttm = null;
+		try {
+			sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			User user = creatUser(rs);
+			return user;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (sttm != null) {
+				try {
+					sttm.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+
+	}
+
+	public User getUserByUid(String uid) {
+
+		Connection connection = JDBCUtil.getMySQLConn();
+		String sql = "select * from user where uid='" + uid + "'";
+		Statement sttm = null;
+		try {
+			sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			User user = creatUser(rs);
+			return user;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (sttm != null) {
+				try {
+					sttm.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+
+	}
+
 }

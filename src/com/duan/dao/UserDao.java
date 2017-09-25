@@ -8,5 +8,6 @@ public interface UserDao {
 	User active(String code);
 	User loginByNameAndPassword(String username, String password);
 	void update(User user);
+	User getUserByUserName(String userName);
 
 }

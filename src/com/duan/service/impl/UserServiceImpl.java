@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public User getUserByUserName(String userName) {
+		return ud.getUserByUserName(userName);
+	}
+
 }

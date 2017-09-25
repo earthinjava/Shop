@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PageBean {
 	//存储元素select * from product where cid=? limit pageNumber*pageSize-pageSize+1,pageNumber*pageSize
-	private List<Product> data;
+	private List<Object> data;
 	//当前页码
 	private int pageNumber;
 	//总记录select * from product where cid=? 获得后++
@@ -14,10 +14,10 @@ public class PageBean {
 	//总页数 totalRecod/pageNumber==0?toatalRecod/pageNumber:....+1
 	private int totalPage;
 	
-	public List<Product> getData() {
+	public List<Object> getData() {
 		return data;
 	}
-	public void setData(List<Product> data) {
+	public void setData(List<Object> data) {
 		this.data = data;
 	}
 	public int getPageNumber() {

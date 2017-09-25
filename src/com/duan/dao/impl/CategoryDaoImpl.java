@@ -1,6 +1,7 @@
 package com.duan.dao.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -93,6 +94,78 @@ public class CategoryDaoImpl implements CategoryDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void add(Category category) {
+		
+		Connection conn = null;
+		String sql = "insert into category values(?,?)";
+		PreparedStatement sttm = null;
+		try {
+			conn = JDBCUtil.getMySQLConn();
+			sttm = conn.prepareStatement(sql);
+			sttm.setString(1, category.getCid());
+			sttm.setString(2, category.getCname());
+			
+			sttm.executeUpdate();
+		
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (sttm != null) {
+				try {
+					sttm.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+	}
+
+	@Override
+	public void del(String cid) {
+		Connection conn = null;
+		String sql = "delete from category where cid=?";
+		PreparedStatement sttm = null;
+		try {
+			conn = JDBCUtil.getMySQLConn();
+			sttm = conn.prepareStatement(sql);
+			sttm.setString(1, cid);			
+			sttm.executeUpdate();
+		
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (sttm != null) {
+				try {
+					sttm.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+	}
+
+	@Override
+	public void update(String cid) {	
+		
 	}
 
 	

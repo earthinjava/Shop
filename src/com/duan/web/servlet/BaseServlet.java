@@ -22,22 +22,23 @@ public class BaseServlet extends HttpServlet {
 		try {
 			//��ȡ���������ظ�
 			String mName = req.getParameter("method");				
-			//�жϷ����Ƿ�Ϊ�գ���Ϊ���趨ΪĬ�Ϸ���
+			//�жϷ����Ƿ�Ϊ�գ���Ϊ���趨ΪĬ�Ϸ���		
 			if(mName==null||mName.trim().length()==0){
 				mName="index";
-			}
-			System.out.println(mName);
+			}	
+			System.out.println("获得方法名："+mName);
 			//��÷���
 			Method m = this.getClass().getMethod(mName, HttpServletRequest.class, HttpServletResponse.class);
 			//ִ�з���
-			String path=(String) m.invoke(this, req, resp);		
 			
+			String path=(String) m.invoke(this, req, resp);			
 			if(path!=null&&path.trim().length()!=0){
 				req.getRequestDispatcher(path).forward(req, resp);
 			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {			
-			e.printStackTrace();
+				| InvocationTargetException e) {
+			req.setAttribute("msg","请求的方法未找到");
+			req.getRequestDispatcher(req.getContextPath()+"/jsp/msg.jsp").forward(req, resp);
 		}
 
 	}

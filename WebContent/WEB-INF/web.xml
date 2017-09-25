@@ -62,4 +62,31 @@
     <servlet-name>product</servlet-name>
       <url-pattern>/product</url-pattern>
   </servlet-mapping>
+  <!-- 购物车处理 -->
+   <servlet>
+    <servlet-name>cartservlet</servlet-name>
+    <servlet-class>com.duan.web.servlet.CartServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>cartservlet</servlet-name>
+      <url-pattern>/cart</url-pattern>
+  </servlet-mapping>  
+  <!-- 订单处理 -->
+   <servlet>
+    <servlet-name>order</servlet-name>
+    <servlet-class>com.duan.web.servlet.OrderServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>order</servlet-name>
+      <url-pattern>/order</url-pattern>
+  </servlet-mapping>  
+   <!-- 管理界面处理 -->
+   <servlet>
+    <servlet-name>adminCategoryServlet</servlet-name>
+    <servlet-class>com.duan.web.servlet.AdminCategoryServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>adminCategoryServlet</servlet-name>
+      <url-pattern>/adminCategoryServlet</url-pattern>
+  </servlet-mapping>  
 </web-app>

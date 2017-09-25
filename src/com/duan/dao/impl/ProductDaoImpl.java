@@ -8,13 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.duan.constant.Constant;
 import com.duan.dao.ProductDao;
 import com.duan.domain.Category;
 import com.duan.domain.PageBean;
 import com.duan.domain.Product;
 import com.duan.utils.JDBCUtil;
-
-import net.sf.json.util.NewBeanInstanceStrategy;
 
 
 public class ProductDaoImpl implements ProductDao {
@@ -23,7 +22,7 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> findHotProducts() {
 		List<Product> products = new ArrayList<Product>();
 		Connection conn = null;
-		String sql = "select * from product where is_hot=1 limit 6";
+		String sql = "select * from product where is_hot=1 limit "+Constant.HOT_PRODUCT_NUMBER;
 		Statement sttm = null;
 		try {
 			conn = JDBCUtil.getMySQLConn();
@@ -149,12 +148,12 @@ public class ProductDaoImpl implements ProductDao {
 		int totalRecord=new ProductDaoImpl().getTotalRecod(cid);
 		pageBean.setTotalRecord(totalRecord);
 		
-		int totalPage=totalRecord/pagesize==0?totalRecord/pagesize:totalRecord/pagesize+1;
+		int totalPage=totalRecord%pagesize==0?totalRecord/pagesize:totalRecord/pagesize+1;
 		pageBean.setTotalPage(totalPage);
 		
-		int end=pagesize-1;
+		int end=pagesize;
 		int begin=pagesize*pageNumber-pagesize;
-		end++;
+		
 		
 		String sql = "select * from product where cid="+cid+" limit "+begin+","+end;
 		Statement sttm = null;

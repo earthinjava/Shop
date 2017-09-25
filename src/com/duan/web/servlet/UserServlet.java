@@ -88,7 +88,13 @@ public class UserServlet extends BaseServlet {
 		String password = req.getParameter("password");
 		// 调用service处理数据
 		UserService us = new UserServiceImpl();
+
 		User u = us.login(username, password);
+		
+		if (username.equals("admin")) {
+			return "/admin/home.jsp";
+		}
+
 		// 若登录正确，存储用户名并回到主页
 		if (u == null) {
 			req.getSession().setAttribute("msg", "用户名或密码错误");
@@ -103,7 +109,7 @@ public class UserServlet extends BaseServlet {
 			 * 若勾选了保存用户名，则保存到cookie中,cookie没有修改操作，只需要创建同名的cookie覆盖即可
 			 */
 
-			if (req.getParameter("savename")!=null&&req.getParameter("savename").equals("ok")) {
+			if (req.getParameter("savename") != null && req.getParameter("savename").equals("ok")) {
 				Cookie cookie = new Cookie("savename", URLEncoder.encode(username, "utf-8"));
 				cookie.setMaxAge(604800);
 				cookie.setPath(req.getContextPath() + "/");
@@ -122,17 +128,29 @@ public class UserServlet extends BaseServlet {
 
 	}
 
-	//
 	public String logout(HttpServletRequest req, HttpServletResponse resp) {
 		// 清空session
 		req.getSession().invalidate();
 		try {
 			resp.sendRedirect("/Shop");
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 		return null;
 
 	}
+
+	public String showuser(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+
+		String username = (String) request.getSession().getAttribute("username");
+
+		UserService us = new UserServiceImpl();
+		User user = us.getUserByUserName(username);
+		request.getSession().setAttribute("user", user);
+		return "/jsp/showuser.jsp";
+
+	}
+
 }

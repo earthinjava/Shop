@@ -7,7 +7,7 @@ import com.duan.domain.Product;
 
 public interface ProductDao {
 
-	List findHotProducts();
+	List<?> findHotProducts();
 
 	Product findProductByPid(String pid);
 

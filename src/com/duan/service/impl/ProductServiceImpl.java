@@ -10,8 +10,9 @@ import com.duan.service.ProductService;
 
 public class ProductServiceImpl implements ProductService{
 
+	
 	@Override
-	public List findHotProducts() {
+	public List<?> findHotProducts() {
 		//调用到层
 		ProductDao pd=new ProductDaoImpl();
 		List<?> products=pd.findHotProducts();

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.duan.constant.Constant;
 import com.duan.domain.PageBean;
 import com.duan.domain.Product;
 import com.duan.service.ProductService;
@@ -33,7 +34,7 @@ public class ProductServlet extends BaseServlet {
 		//1.获得cid 获得页码
 		int pageNumber=1;
 		pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
-		int pagesize=3;
+		int pagesize=Constant.PAGE_SIZE;
 		String cid=request.getParameter("cid");
 		//2.调用service取得pagebean
 		ProductService ps=new ProductServiceImpl();		
