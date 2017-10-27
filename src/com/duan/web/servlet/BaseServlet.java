@@ -29,16 +29,14 @@ public class BaseServlet extends HttpServlet {
 			System.out.println("获得方法名："+mName);
 			//��÷���
 			Method m = this.getClass().getMethod(mName, HttpServletRequest.class, HttpServletResponse.class);
-			//ִ�з���
-			
 			String path=(String) m.invoke(this, req, resp);			
 			if(path!=null&&path.trim().length()!=0){
 				req.getRequestDispatcher(path).forward(req, resp);
 			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
+				| InvocationTargetException e) {			
 			req.setAttribute("msg","请求的方法未找到");
-			req.getRequestDispatcher(req.getContextPath()+"/jsp/msg.jsp").forward(req, resp);
+			req.getRequestDispatcher("/jsp/msg.jsp").forward(req, resp);
 		}
 
 	}

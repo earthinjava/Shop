@@ -8,27 +8,41 @@ import com.duan.domain.PageBean;
 import com.duan.domain.Product;
 import com.duan.service.ProductService;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
-	
 	@Override
 	public List<?> findHotProducts() {
-		//调用到层
-		ProductDao pd=new ProductDaoImpl();
-		List<?> products=pd.findHotProducts();
+		// 调用到层
+		ProductDao pd = new ProductDaoImpl();
+		List<?> products = pd.findHotProducts();
 		return products;
 	}
 
 	public Product findProductByPid(String pid) {
-		ProductDao pd=new ProductDaoImpl();
+		ProductDao pd = new ProductDaoImpl();
 		return pd.findProductByPid(pid);
 	}
 
 	@Override
 	public PageBean getPageBean(int pageNumber, int pagesize, String cid) {
-		ProductDao pd=new ProductDaoImpl();
-		PageBean pageBean=pd.getPageBean(pageNumber, pagesize,cid);
+		ProductDao pd = new ProductDaoImpl();
+		PageBean pageBean = pd.getPageBean(pageNumber, pagesize, cid);
 		return pageBean;
+	}
+
+	@Override
+	public List<Product> findAll() {
+		// 调用到层
+		ProductDao pd = new ProductDaoImpl();
+		List<Product> products = pd.findAll();
+		return products;
+	}
+
+	@Override
+	public void save(Product product) {
+		ProductDao pd=new ProductDaoImpl();
+		pd.save(product);
+		
 	}
 
 }

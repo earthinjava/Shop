@@ -25,6 +25,7 @@ public class ProductServlet extends BaseServlet {
 		//2.调用service取得产品
 		Product p=new ProductServiceImpl().findProductByPid(pid);
 		//3.保存到request中
+		System.out.println(p.getPimage());
 		request.setAttribute("product", p);
 		//4.跳转到商品显示页面
 		return "/jsp/showproduct.jsp";

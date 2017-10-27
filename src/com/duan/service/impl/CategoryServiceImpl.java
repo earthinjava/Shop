@@ -41,6 +41,9 @@ public class CategoryServiceImpl implements CategoryService {
 		CategoryDao cd=new CategoryDaoImpl();
 		cd.update(cid);
 	}
+	public Category getCategoryById(String value) {
+		return new CategoryDaoImpl().getCategory(value);		
+	}
 
 	
 

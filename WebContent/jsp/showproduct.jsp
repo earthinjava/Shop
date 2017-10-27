@@ -34,12 +34,13 @@
 	<div class="main">
 		<div class="product_image"
 			style="text-align: center; float: left; margin: 10px 100px 10px 100px; width: 300px; height: 300px; overflow: hidden; background: #C0C0C0;">
+			<img src="${pageContext.request.contextPath }/image/${product.pimage }" width="300" height="300"></img>					
 		</div>
 		<div
-			style="margin: 10px auto; width: 300px; height: 300px; overflow: hidden; background: #C0C0C0;">
+			style="margin: 10px auto; width: 300px; height: 300px; overflow: hidden; background:#F0F8FF;">
 			<div style="margin: 10px;height:50px;">
 				<ul style="text-align:left;height:50px;padding-left:0;">
-					<li>商品名称：${product.pname }</li><br>
+					<li>商品名称：${product.pname }</li></br>
 					<li>商品价格：${product.market_price }</li>
 				</ul>
 			</div>

@@ -13,4 +13,8 @@ public interface ProductDao {
 
 	PageBean getPageBean(int pageNumber, int pagesize, String cid);
 
+	List<Product> findAll();
+
+	void save(Product product);
+
 }

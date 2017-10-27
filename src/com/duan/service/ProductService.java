@@ -10,6 +10,8 @@ public interface ProductService {
 	List<?> findHotProducts();
 	Product findProductByPid(String pid);
 	PageBean getPageBean(int pageNumber, int pagesize, String cid);
+	List<Product> findAll();
+	void save(Product product);
 
 
 }

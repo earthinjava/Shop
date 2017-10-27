@@ -31,9 +31,10 @@
 					<ul style="text-align: center;">
 						<li style="text-align: center;"><a
 							href="/Shop/product?method=findproductbypid&pid=${p.pid }">${p.pname }</a>
-						</li><br>
-						<li>市场价：${p.market_price }</li>
-						<li>商场价：${p.shop_price }</li>
+						</li></br>
+						<li>市场价：${p.market_price }</li></br>
+						<li>商场价：${p.shop_price }</li></br>
+						<a href="/Shop/product?method=findproductbypid&pid=${p.pid }"><img src="${pageContext.request.contextPath }/image/${p.pimage }" width="100" height="100"></img></a>
 					</ul>
 				</div>
 			</c:forEach>
